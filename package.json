@@ -1,10 +1,14 @@
 {
   "name": "confac-playwright",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Playwright tests for confac",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "ui": "npx playwright test --ui",
+    "headed": "npx playwright test --headed",
+    "failed": "npx playwright test --last-failed",
+    "debug": "npx playwright test --debug",
+    "report": "npx playwright show-report"
   },
   "repository": {
     "type": "git",
@@ -14,6 +18,9 @@
   "author": "itenium",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.53.1"
+    "@faker-js/faker": "^9.8.0",
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^24.0.3",
+    "dotenv": "^16.5.0"
   }
 }
