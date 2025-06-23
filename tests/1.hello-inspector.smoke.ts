@@ -16,6 +16,8 @@ test.describe('confac Playwright Inspector demo', () => {
     await page.getByRole('button', {name: 'confac start'}).click();
 
     await expect(page).toHaveTitle(/Maandelijkse facturatie/);
-    await page.waitForFunction(expectedUser => localStorage.getItem('anonUser') === expectedUser, 'Steven');
+    await page.waitForFunction(expectedUser => {
+      return localStorage.getItem('anonUser') === expectedUser;
+    }, 'Steven');
   });
 });
