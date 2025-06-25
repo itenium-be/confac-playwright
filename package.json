@@ -8,7 +8,8 @@
     "headed": "npx playwright test --headed",
     "failed": "npx playwright test --last-failed",
     "debug": "npx playwright test --debug",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "codegen": "npx playwright codegen localhost:3000"
   },
   "repository": {
     "type": "git",
