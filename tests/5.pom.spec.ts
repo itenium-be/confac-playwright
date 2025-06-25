@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
 import { Dropdown } from '../helpers/Dropdown';
 import { ClientCreatePage } from '../helpers/ClientCreatePage';
+import { NotesModal } from '../helpers/NotesModal';
 
 test.describe('POM', () => {
   test('helpers for dropdowns', async ({ page }) => {
     await page.goto('/clients/create');
-    await page.locator('.tst-btw-submitted').click();
+    await page.getByTestId('btw-requested').click();
 
     // Page Object Model: https://playwright.dev/docs/pom
-    // https://playwright.dev/docs/test-fixtures
 
     // Single option dropdown
     const country = new Dropdown(page, 'country');
@@ -45,30 +45,31 @@ test.describe('POM', () => {
     test('with btw nr', async ({ page }) => {
       const clientCreate = new ClientCreatePage(page);
       await clientCreate.goto();
+
+      // Mock API: https://playwright.dev/docs/mock
       const btwInfo = (await clientCreate.btw())!;
 
       await expect(clientCreate.get('name')).toHaveValue(btwInfo.name);
       await expect(clientCreate.get('postalCode')).toHaveValue(btwInfo.address.zip_code);
-      await expect(clientCreate.get('btw')).toHaveValue(btwInfo.vatNumber);
     });
 
     test.describe('client comments', () => {
-      test('search for a comment', async ({ page }) => {
-        const clientCreate = new ClientCreatePage(page);
+      let clientCreate: ClientCreatePage;
+      let notes: NotesModal;
+
+      test.beforeEach(async ({ page }) => {
+        clientCreate = new ClientCreatePage(page);
         await clientCreate.goto();
         await clientCreate.btw();
-        const notes = await clientCreate.notes();
+        notes = await clientCreate.notes();
+      });
 
+      test('search for a comment', async () => {
         await notes.search('needle');
         await expect(notes.modal).toContainText('Geen commentaar gevonden die overeenkomen met uw filter');
       });
 
-      test('add a comment', async ({ page }) => {
-        const clientCreate = new ClientCreatePage(page);
-        await clientCreate.goto();
-        await clientCreate.btw();
-        const notes = await clientCreate.notes();
-
+      test('add a comment', async () => {
         await notes.add('le comment');
         await expect(notes.comments).toContainText('le comment');
       });

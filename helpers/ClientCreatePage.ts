@@ -25,6 +25,7 @@ export class ClientCreatePage {
     });
 
     await this.page.getByTestId('btw').fill(btw.vatNumber);
+    await this.page.waitForResponse(resp => resp.url().includes('/api/clients/btw'))
     await this.page.getByTestId('btw-continue').click();
     return btw;
   }
