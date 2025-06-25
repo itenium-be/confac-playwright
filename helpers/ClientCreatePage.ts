@@ -14,10 +14,10 @@ export class ClientCreatePage {
     await this.page.goto('/clients/create');
   }
 
-  async btw(btw: BtwResponse | 'btw in aanvraag' = defaultResponse): Promise<BtwResponse | null> {
+  async btw(btw: BtwResponse | 'btw in aanvraag' = defaultResponse): Promise<BtwResponse> {
     if (btw === 'btw in aanvraag') {
       await this.page.getByTestId('btw-requested').click();
-      return null;
+      return {} as BtwResponse;
     }
 
     await this.page.route('*/**/api/clients/btw/*', async route => {

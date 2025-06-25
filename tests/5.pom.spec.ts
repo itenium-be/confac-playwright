@@ -47,7 +47,7 @@ test.describe('POM', () => {
       await clientCreate.goto();
 
       // Mock API: https://playwright.dev/docs/mock
-      const btwInfo = (await clientCreate.btw())!;
+      const btwInfo = await clientCreate.btw();
 
       await expect(clientCreate.get('name')).toHaveValue(btwInfo.name);
       await expect(clientCreate.get('postalCode')).toHaveValue(btwInfo.address.zip_code);
