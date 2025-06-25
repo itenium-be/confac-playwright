@@ -35,6 +35,22 @@ npm install
 npm start
 ```
 
+### Dependencies
+
+**Download [nvm for windows](https://github.com/coreybutler/nvm-windows/releases)**
+
+On Administrative prompt:
+
+```ps1
+nvm install 22.11.0
+nvm use 22.11.0
+```
+
+**Install [Docker for Windows](https://docs.docker.com/desktop/setup/install/windows-install/)**
+
+```ps1
+docker pull mongo:3.6.3
+```
 
 ## Playwright
 
