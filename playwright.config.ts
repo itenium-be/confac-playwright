@@ -48,25 +48,42 @@ export default defineConfig({
     },
 
     {
-      name: 'setup',
+      name: 'setup-auth',
       testMatch: /.*2\.auth\.setup\.ts/
     },
     {
-      name: 'chromium',
+      name: 'with-auth',
       use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
-      dependencies: ['setup'],
+      testMatch: /.*\.spec\.auth\.ts/,
+      dependencies: ['setup-auth'],
+    },
+
+    {
+      name: 'setup-db',
+      testMatch: /.*6\.db\.setup\.ts/
+    },
+    {
+      name: 'cleanup-db',
+      testMatch: /.*6\.db\.teardown\.ts/
+    },
+    {
+      name: 'auth+db',
+      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
+      testMatch: /.*\.spec\.ts/,
+      dependencies: ['setup-auth', 'setup-db'],
+      teardown: 'cleanup-db',
     },
 
     // Run for all three browsers
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json' },
-    //   dependencies: ['setup'],
+    //   dependencies: ['setup-auth'],
     // },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'], storageState: 'playwright/.auth/user.json' },
-    //   dependencies: ['setup'],
+    //   dependencies: ['setup-auth'],
     // },
 
     /* Test against mobile viewports. */
