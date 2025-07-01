@@ -23,8 +23,6 @@ test.describe('admin role', () => {
     //   },
     // });
 
-    console.log('expectations');
-
     await expect(page.locator('#basic-navbar-nav')).toMatchAriaSnapshot(`
       - link "Facturatie":
         - /url: /monthly-invoicing

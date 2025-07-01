@@ -1,0 +1,4 @@
+*.DotSettings.user
+obj
+bin
+.vs
