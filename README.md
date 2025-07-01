@@ -129,6 +129,12 @@ export default defineConfig({
 
 ## Exercises
 
+### Consultants
+
+- Create some default consultants
+- Write tests to test `/consultants` filters
+
+
 ### INVOICING
 
 - Create invoice:
