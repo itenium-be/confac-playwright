@@ -1,3 +1,6 @@
 [submodule "confac"]
 	path = confac
 	url = https://github.com/itenium-be/confac
+[submodule "java"]
+	path = java
+	url = https://github.com/SimonVerhoeven/playwright-demo
