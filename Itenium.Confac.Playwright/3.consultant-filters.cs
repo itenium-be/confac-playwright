@@ -1,5 +1,4 @@
 using Itenium.Confac.Playwright.Helpers;
-using System.Text.RegularExpressions;
 using Itenium.Confac.Playwright.Models;
 
 namespace Itenium.Confac.Playwright;
@@ -8,16 +7,20 @@ namespace Itenium.Confac.Playwright;
 [TestFixture]
 public class ConsultantFilters : DbPage
 {
-  [SetUp]
+  [OneTimeSetUp]
   public async Task InsertConsultants()
   {
-    await Page.GotoAsync("/consultants");
-
     await Db.GetCollection<Consultant>("consultants").InsertOneAsync(new Consultant()
     {
-      Name = "name",
+      Name = "name2",
       FirstName = "firstName"
     });
+  }
+
+  [SetUp]
+  public async Task OpenConsultants()
+  {
+    await Page.GotoAsync("/consultants");
   }
 
   [Test]
@@ -27,7 +30,7 @@ public class ConsultantFilters : DbPage
     
   }
 
-  [TearDown]
+  [OneTimeTearDown]
   public async Task DeleteConsultants()
   {
     await Db.DropCollectionAsync("consultants");

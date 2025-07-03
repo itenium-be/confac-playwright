@@ -1,5 +1,7 @@
 using Itenium.Confac.Playwright.Models;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using Newtonsoft.Json.Serialization;
 
 namespace Itenium.Confac.Playwright.Helpers;
 
@@ -7,9 +9,19 @@ public class DbPage : AuthenticatedPage
 {
   protected IMongoDatabase Db;
 
-  [SetUp]
+  [OneTimeSetUp]
   public async Task SetUpDb()
   {
+    var conventionPack = new ConventionPack
+    {
+      new CamelCaseElementNameConvention(),
+    };
+    ConventionRegistry.Register(
+      "CaseConvention",
+      conventionPack,
+      t => true // apply to all classes
+    );
+
     const string mongoUri = "mongodb://admin:pwd@localhost:27017/admin";
     var mongo = new MongoClient(mongoUri);
     await mongo.DropDatabaseAsync("confac-playwright");
