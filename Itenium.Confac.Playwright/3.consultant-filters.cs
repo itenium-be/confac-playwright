@@ -1,5 +1,6 @@
 using Itenium.Confac.Playwright.Helpers;
 using Itenium.Confac.Playwright.Models;
+using MongoDB.Driver;
 
 namespace Itenium.Confac.Playwright;
 
@@ -10,11 +11,24 @@ public class ConsultantFilters : DbPage
   [OneTimeSetUp]
   public async Task InsertConsultants()
   {
-    await Db.GetCollection<Consultant>("consultants").InsertOneAsync(new Consultant()
+    long count = await Db.GetCollection<Consultant>("consultants").CountDocumentsAsync(_ => true);
+    if (count > 0)
     {
-      Name = "name2",
-      FirstName = "firstName"
-    });
+      return;
+    }
+
+    await Db.GetCollection<Consultant>("consultants").InsertManyAsync([
+      new Consultant("Anders", "Hejlsberg"),
+      new Consultant("Linus", "Torvalds"),
+      new Consultant("Guido", "van Rossum"),
+      new Consultant("Brendan", "Eich"),
+      new Consultant("Martin", "Fowler"),
+      new Consultant("Robert", "Martin"),
+      new Consultant("Grace", "Hopper"),
+      new Consultant("Donald", "Knuth"),
+      new Consultant("Ken", "Thompson"),
+      new Consultant("Bruce", "Schneier")
+    ]);
   }
 
   [SetUp]
@@ -33,6 +47,6 @@ public class ConsultantFilters : DbPage
   [OneTimeTearDown]
   public async Task DeleteConsultants()
   {
-    await Db.DropCollectionAsync("consultants");
+    // await Db.DropCollectionAsync("consultants");
   }
 }

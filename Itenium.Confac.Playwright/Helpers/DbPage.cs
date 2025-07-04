@@ -1,7 +1,6 @@
 using Itenium.Confac.Playwright.Models;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using Newtonsoft.Json.Serialization;
 
 namespace Itenium.Confac.Playwright.Helpers;
 
