@@ -27,7 +27,9 @@ public class ConsultantFilters : DbPage
       new Consultant("Grace", "Hopper"),
       new Consultant("Donald", "Knuth"),
       new Consultant("Ken", "Thompson"),
-      new Consultant("Bruce", "Schneier")
+      new Consultant("Bruce", "Drucker"),
+      new Consultant("Peter", "Schneier", false),
+      new Consultant("Clayton", "Christensen", false),
     ]);
   }
 
@@ -40,8 +42,8 @@ public class ConsultantFilters : DbPage
   [Test]
   public async Task TextFilter_Works()
   {
-    await Page.GotoAsync("/clients");
     
+
   }
 
   [OneTimeTearDown]
