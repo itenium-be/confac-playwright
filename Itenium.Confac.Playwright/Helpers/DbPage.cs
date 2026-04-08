@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace Itenium.Confac.Playwright.Helpers;
 
-public class DbPage : AuthenticatedPage
+public abstract class DbPage : AuthenticatedPage
 {
   protected IMongoDatabase Db;
 

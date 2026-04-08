@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Itenium.Confac.Playwright.Helpers;
 
-public class AuthenticatedPage : PageTest
+public abstract class AuthenticatedPage : PageTest
 {
   [SetUp]
   public async Task LoginAndRememberAuth()

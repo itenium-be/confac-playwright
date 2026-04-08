@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "Playwright tests for confac",
   "scripts": {
-    "test": "npx playwright test",
-    "ui": "npx playwright test --ui",
-    "headed": "npx playwright test --headed",
-    "failed": "npx playwright test --last-failed",
-    "debug": "npx playwright test --debug",
-    "report": "npx playwright show-report",
-    "codegen": "npx playwright codegen localhost:3000",
-    "trace": "npx playwright test --trace on"
+    "test": "bunx playwright test",
+    "ui": "bunx playwright test --ui",
+    "headed": "bunx playwright test --headed",
+    "failed": "bunx playwright test --last-failed",
+    "debug": "bunx playwright test --debug",
+    "report": "bunx playwright show-report",
+    "codegen": "bunx playwright codegen localhost:3000",
+    "trace": "bunx playwright test --trace on"
   },
   "repository": {
     "type": "git",
