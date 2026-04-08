@@ -13,9 +13,9 @@ Node v22.11.0
 git clone --recurse-submodules https://github.com/itenium-be/confac-playwright
 
 cd confac-playwright
-npm install
-npx playwright install
-npm test
+bun install
+bunx playwright install
+bun test
 ```
 
 ### Start confac
@@ -67,8 +67,8 @@ test('some test', async ({ page, browserName }) => {
 });
 
 test.describe('group', { tag: '@prod' }, () => {});
-// Run: npx playwright test --grep @prod
-// Run: npx playwright test --grep-invert @prod
+// Run: bunx playwright test --grep @prod
+// Run: bunx playwright test --grep-invert @prod
 ```
 
 ### Tracing
@@ -76,8 +76,8 @@ test.describe('group', { tag: '@prod' }, () => {});
 [Trace Viewer](https://playwright.dev/docs/trace-viewer)
 
 ```ps1
-npx playwright test pom --trace on
-npx playwright show-report
+bunx playwright test pom --trace on
+bunx playwright show-report
 ```
 
 On the CI set `trace: 'on-first-retry'` in the config to replay
@@ -85,7 +85,7 @@ locally or on [trace.playwright.dev](https://trace.playwright.dev/)
 what went wrong.
 
 ```ps1
-npx playwright show-trace trace.zip
+bunx playwright show-trace trace.zip
 ```
 
 ### Screenshots
@@ -106,7 +106,7 @@ await page.screenshot({
 await expect(page).toHaveScreenshot();
 
 // Update the "golden" screenshots after changes to the layout
-// npx playwright test --update-snapshots
+// bunx playwright test --update-snapshots
 ```
 
 ### Videos
